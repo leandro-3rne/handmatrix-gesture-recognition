@@ -16,42 +16,75 @@ This repository contains four distinct modules:
 
 ## 🧠 Theoretical Background
 
-This project compares two fundamental architectures in Deep Learning.
+This project implements and compares two distinct approaches to machine learning for computer vision: a classical Multilayer Perceptron (MLP) built from scratch and a modern Convolutional Neural Network (CNN).
 
 ### 1. Multilayer Perceptron (Custom C++ Implementation)
-The custom neural network processes the image as a flat vector. The image ($32 \times 32$ pixels) is flattened into a vector $x$ of size 1024.
 
-**Forward Propagation:**
-For a layer $l$, the activation $a^{[l]}$ is calculated as:
+The custom neural network is a "Feedforward Neural Network" built using matrix operations via the **Eigen3** library. It processes the input image as a flattened vector of pixel intensities.
 
-$$z^{[l]} = W^{[l]} \cdot a^{[l-1]} + b^{[l]}$$
+#### Architecture Topology
+* **Input Layer:** 1024 neurons ($32 \times 32$ pixels flattened).
+* **Hidden Layer 1:** 256 neurons.
+* **Hidden Layer 2:** 64 neurons.
+* **Output Layer:** 8 neurons (representing the 8 gesture classes).
 
-$$a^{[l]} = \sigma(z^{[l]})$$
+#### The Mathematical Model
+Each neuron performs a weighted sum of its inputs, adds a bias, and passes the result through a non-linear activation function. For a single layer $l$, the computation is:
+
+$$Z^{[l]} = W^{[l]} \cdot A^{[l-1]} + b^{[l]}$$
+$$A^{[l]} = \sigma(Z^{[l]})$$
 
 Where:
-* $W$ is the Weight Matrix.
-* $b$ is the Bias Vector.
-* $\sigma$ is the Sigmoid Activation Function: $\sigma(z) = \frac{1}{1 + e^{-z}}$.
+* $W^{[l]}$ is the Weight Matrix connecting layer $l-1$ to $l$.
+* $A^{[l-1]}$ is the Activation vector from the previous layer.
+* $b^{[l]}$ is the Bias Vector.
+* $\sigma$ is the Activation Function.
 
-**Backpropagation (Learning):**
-The network minimizes the error by computing the gradient of the Cost Function w.r.t. weights using the Chain Rule:
+#### Activation Function: Sigmoid
+In the custom C++ implementation, the **Sigmoid** function is used for all layers. It introduces non-linearity, allowing the network to learn complex patterns, and squashes the output between 0 and 1.
 
-$$\frac{\partial C}{\partial W} = \frac{\partial C}{\partial a} \cdot \frac{\partial a}{\partial z} \cdot \frac{\partial z}{\partial W}$$
+$$\sigma(z) = \frac{1}{1 + e^{-z}}$$
+
+The derivative of the sigmoid function, which is crucial for the learning process (Backpropagation), has a convenient property:
+$$\sigma'(z) = \sigma(z) \cdot (1 - \sigma(z))$$
+
+#### Learning Algorithm: Backpropagation
+The network learns by minimizing a Cost Function (typically Mean Squared Error for simple implementations). We use **Gradient Descent** to update weights. The gradient is calculated using the **Chain Rule**:
+
+To find how much a specific weight $w$ contributes to the error $C$, we calculate:
+
+$$\frac{\partial C}{\partial w} = \underbrace{\frac{\partial C}{\partial a}}_{\text{Error from next layer}} \cdot \underbrace{\frac{\partial a}{\partial z}}_{\text{Activation derivative}} \cdot \underbrace{\frac{\partial z}{\partial w}}_{\text{Input from prev. layer}}$$
+
+The weights are then updated using a learning rate $\eta$:
+$$W_{new} = W_{old} - \eta \cdot \frac{\partial C}{\partial W}$$
+
+---
 
 ### 2. Convolutional Neural Network (CNN)
-Unlike the MLP, the CNN preserves the spatial structure of the image ($32 \times 32 \times 1$). It is translation invariant, making it superior for image recognition.
 
-**Convolution Operation:**
-The core operation involves a kernel $K$ sliding over the input image $I$:
+While the MLP treats the image as an unstructured list of numbers, the CNN preserves the spatial structure (height, width, channels). This makes it translation invariant—it recognizes a hand whether it's in the top-left or bottom-right corner.
+
+#### The Convolution Operation
+Instead of fully connected weights, the CNN uses learnable **filters (kernels)**. A kernel slides over the input image, performing element-wise multiplication and summation to produce a feature map.
 
 $$(I * K)(i, j) = \sum_m \sum_n I(i+m, j+n) \cdot K(m, n)$$
 
-**Feature Extraction Pipeline:**
-1.  **Conv2D:** Detects edges and patterns.
-2.  **ReLU:** Introduces non-linearity ($f(x) = \max(0, x)$).
-3.  **MaxPooling:** Reduces dimensionality (Downsampling).
-4.  **Flatten & Dense:** Final classification.
+This allows the network to automatically detect low-level features (edges, lines) in early layers and high-level features (shapes, hand structures) in deeper layers.
 
+#### Activation Function: ReLU
+The CNN (trained in TensorFlow) typically uses the **Rectified Linear Unit (ReLU)** for hidden layers. It is computationally efficient and solves the "vanishing gradient" problem often found in deep networks using Sigmoid.
+
+$$f(x) = \max(0, x)$$
+
+#### Pooling (Downsampling)
+To reduce computational cost and make the model robust to small spatial variations, **Max Pooling** is used. It takes a window (e.g., $2 \times 2$) and keeps only the maximum value, discarding the rest.
+
+#### Output: Softmax
+The final layer of the CNN uses the **Softmax** function to convert raw output scores (logits) into a probability distribution over the 8 classes.
+
+$$P(y=j \mid x) = \frac{e^{z_j}}{\sum_{k=1}^{K} e^{z_k}}$$
+
+This ensures that the sum of all output probabilities equals 1 (100%).
 ---
 
 ## 🚀 How to Use (Workflow)
