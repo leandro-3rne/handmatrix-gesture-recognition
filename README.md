@@ -135,6 +135,7 @@ double sigmoid(double x) {
 #### Learning: Backpropagation
 The network learns by minimizing a Cost Function (Mean Squared Error). We calculate the gradient of the error with respect to the weights using the **Chain Rule** and update the weights (Gradient Descent).
 
+
 $$
 \frac{\partial C}{\partial w} = \underbrace{\frac{\partial C}{\partial a}}_{\text{Error from next layer}} \cdot \underbrace{\frac{\partial a}{\partial z}}_{\text{Activation derivative}} \cdot \underbrace{\frac{\partial z}{\partial w}}_{\text{Input from prev. layer}}
 $$
