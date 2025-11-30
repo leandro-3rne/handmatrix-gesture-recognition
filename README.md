@@ -167,13 +167,13 @@ $$
 #### Network Definition (Python/Keras)
 The architecture consists of three convolutional blocks followed by a dense classifier.
 
-##### 1. The Convolutional Blocks (The "Eyes")
+**1. The Convolutional Blocks (The "Eyes")**
 These blocks act as **feature extractors**. They scan over the image to "see" patterns.
 * **Block 1:** Detects simple features like **edges, lines, and corners**.
 * **Block 2 & 3:** Combine those lines to recognize complex shapes like **curves, fingers, or hand outlines**.
 * *Note:* They also shrink the image (using Pooling) to focus only on the most important information.
 
-##### 2. The Dense Classifier (The "Brain")
+**2. The Dense Classifier (The "Brain")**
 This part acts as the **decision maker**.
 * **Flattening:** It takes the square feature maps from the convolutional blocks and stretches them into a long list of numbers (a vector).
 * **Dense Layers:** It analyzes this list to decide: *"Based on these curves and lines, there is a 99% chance this is a 'Peace' sign."*
