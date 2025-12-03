@@ -257,6 +257,7 @@ This part acts as the **decision maker**. (Similar to the MLP)
 * **Flattening:** It takes the square feature maps from the convolutional blocks and stretches them into a long list of numbers (a vector).
 * **Dense Layers:** It analyzes this list to decide: *"Based on these curves and lines, there is a 99% chance this is a 'Peace' sign."*
 
+**Implementation in Python (`train_cnn.py`):**
 ```python
 model = models.Sequential([
     # Feature Extraction
