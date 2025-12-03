@@ -17,7 +17,7 @@ This repository is structured into four distinct modules:
 
 ## 👁️ The Computer Vision Pipeline
 
-Before any Neural Network can classify a gesture, the raw webcam image must be heavily processed to extract relevant features and reduce noise. Both models use the exact same preprocessing pipeline to ensure consistency.
+Before any Neural Network can classify a gesture, the raw webcam image must be heavily processed to extract relevant features and reduce noise. Both models use the exact same preprocessing pipeline to ensure consistency. The OpenCV Library was used here, to ensure a standardized and efficient pipeline for capturing, processing, and normalizing the webcam feed for the neural networks.
 
 ### 1. Region of Interest (ROI) & Background Subtraction
 We focus only on a specific area (`scanBox`) to reduce computational load. To isolate the hand from the background, we calculate the absolute difference between the current frame and a stored background frame.
@@ -151,7 +151,9 @@ $$
 
 **For Multiple Layers:**
 The error is propagated backward layer by layer. The error for a hidden layer is calculated based on the error of the *following* layer, weighted by the connections between them.
+
 $$ \delta^{[l]} = (W^{[l+1]})^T \cdot \delta^{[l+1]} \odot \sigma'(z^{[l]}) $$
+
 Where $\delta$ is the error term for a layer. This allows us to update weights deep inside the network based on the final output error.
 
 **Implementation in C++ (`NeuralNet.h`):**
@@ -172,13 +174,11 @@ W3 += learningRate * outputGradient * h2.transpose();
 
 While the MLP treats the image as an unstructured list of numbers, the CNN preserves the spatial structure (height, width, channels).
 
-[attachment_0](attachment)
-
 #### The Convolution Operation (Kernels)
 Instead of fully connected weights, the CNN uses learnable **filters (kernels)**. A kernel "slides" over the input image pixel by pixel. At each step, it performs element-wise multiplication with the image patch and sums the results.
 
-**Example Kernel (Edge Detection):**
-This simple $3 \times 3$ matrix detects vertical edges by looking for changes from bright to dark pixels.
+**What does a Kernel look like?**
+A kernel is simply a small matrix of weights. For example, this $3 \times 3$ kernel detects vertical edges (sobel filter):
 
 $$
 K = \begin{bmatrix}
@@ -188,7 +188,7 @@ K = \begin{bmatrix}
 \end{bmatrix}
 $$
 
-The CNN learns these numbers automatically during training!
+When this matrix slides over an image, the dot product will be high where there is a vertical edge (difference between left and right pixels) and zero where the area is flat. The CNN learns these numbers automatically during training!
 
 $$
 (I * K)(i, j) = \sum_m \sum_n I(i+m, j+n) \cdot K(m, n)
