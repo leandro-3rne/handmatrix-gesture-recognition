@@ -3,14 +3,14 @@
 This project is a real-time hand gesture recognition system capable of identifying 8 different hand signs (like Fist, Peace, Rock, etc.) via webcam. It serves as an educational deep dive into Computer Vision and Machine Learning, contrasting a manually implemented neural network with a state-of-the-art CNN approach. Essentially, it translates raw pixel data from your camera into actionable commands or classifications instantly.
 
 <p align="center">
-  <img src="HandMatrix/README_Images/Fist_Gesture.png" width="11%" title="Fist Gesture">
-  <img src="HandMatrix/README_Images/Peace_Gesture.png" width="11%" title="Peace Gesture">
-  <img src="HandMatrix/README_Images/Hand_Gesture.png" width="11%" title="Hand Gesture">
-  <img src="HandMatrix/README_Images/Middle_Gesture.png" width="11%" title="Middle Gesture">
-  <img src="HandMatrix/README_Images/Up_Gesture.png" width="11%" title="Up Gesture">
-  <img src="HandMatrix/README_Images/Down_Gesture.png" width="11%" title="Down Gesture">
-  <img src="HandMatrix/README_Images/Rock_Gesture.png" width="11%" title="Rock Gesture">
-  <img src="HandMatrix/README_Images/Chill_Gesture.png" width="11%" title="Chill Gesture">
+  <img src="HandMatrix/README_Images/Fist_Gesture.png" width="20%" title="Fist Gesture">
+  <img src="HandMatrix/README_Images/Peace_Gesture.png" width="20%" title="Peace Gesture">
+  <img src="HandMatrix/README_Images/Hand_Gesture.png" width="20%" title="Hand Gesture">
+  <img src="HandMatrix/README_Images/Up_Gesture.png" width="20%" title="Up Gesture">
+  <img src="HandMatrix/README_Images/Down_Gesture.png" width="20%" title="Down Gesture">
+  <img src="HandMatrix/README_Images/Rock_Gesture.png" width="20%" title="Rock Gesture">
+  <img src="HandMatrix/README_Images/Chill_Gesture.png" width="20%" title="Chill Gesture">
+  <img src="HandMatrix/README_Images/Middle_Gesture.png" width="20%" title="Middle Gesture">
 </p>
 
 ![C++](https://img.shields.io/badge/C++-20-blue.svg) ![OpenCV](https://img.shields.io/badge/OpenCV-4.x-green.svg) ![Python](https://img.shields.io/badge/Python-3.12-yellow.svg) ![TensorFlow](https://img.shields.io/badge/TensorFlow-Keras-orange.svg)
