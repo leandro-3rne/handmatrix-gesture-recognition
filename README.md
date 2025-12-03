@@ -182,6 +182,7 @@ $$
 * **$\eta$ (Learning Rate):** A hyperparameter that controls the **size of the step** we take.
     * *If too high:* The network might overshoot the minimum and fail to learn.
     * *If too low:* Training becomes very slow as the network takes tiny steps.
+      
 
 **Implementation in C++ (`NeuralNet.h`):**
 ```cpp
