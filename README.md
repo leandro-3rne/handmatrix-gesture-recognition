@@ -91,7 +91,7 @@ This project highlights the fundamental differences between classical fully conn
 
 The custom neural network is a "Feedforward Neural Network" built using matrix operations via the **Eigen3** library. It processes the input image ($32 \times 32$ pixels) as a flattened vector of 1024 distinct values.
 
-![Basic architecture of a simple NN](NN_Image.png)
+![Basic architecture of a simple NN](README_Images/NN_Image.png)
 
 #### Architecture Topology
 * **Input Layer:** 1024 neurons ($32 \times 32$ pixels flattened).
@@ -176,7 +176,7 @@ W3 += learningRate * outputGradient * h2.transpose();
 
 While the MLP treats the image as an unstructured list of numbers, the CNN preserves the spatial structure (height, width, channels).
 
-![Basic architecture of a simple CNN](CNN_Image.png)
+![Basic architecture of a simple CNN](README_Images/CNN_Image.png)
 
 #### The Convolution Operation (Kernels)
 Instead of fully connected weights, the CNN uses learnable **filters (kernels)**. A kernel "slides" over the input image pixel by pixel. At each step, it performs element-wise multiplication with the image patch and sums the results.
