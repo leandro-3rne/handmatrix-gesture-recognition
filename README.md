@@ -253,6 +253,8 @@ If you want to skip data collection and jump straight to training, you can use m
 * **`00_Datasets/raw_data.zip`**: Contains the original grayscale images captured with the C++ Data Collector.
 * **`00_Datasets/augmented_data.zip`**: Contains the fully processed, rotated, and noisy images ready for CNN training.
 
+(Make sure to unzip the files first tho)
+
 ---
 
 ## 🛠 Dependencies
