@@ -13,8 +13,6 @@ This project is a real-time hand gesture recognition system capable of identifyi
   <img src="HandMatrix/README_Images/Middle_Gesture.png" width="20%" title="Middle Gesture">
 </p>
 
-![C++](https://img.shields.io/badge/C++-20-blue.svg) ![OpenCV](https://img.shields.io/badge/OpenCV-4.x-green.svg) ![Python](https://img.shields.io/badge/Python-3.12-yellow.svg) ![TensorFlow](https://img.shields.io/badge/TensorFlow-Keras-orange.svg)
-
 ## 📂 Project Overview
 
 This repository is structured into four distinct modules:
